@@ -7,12 +7,15 @@ interface IProfileContextProps {
 }
 
 export interface IProfileContext {
-    listProducts: IProducts[] | []
+    listProducts: IProducts[] 
     setListProducts: React.Dispatch<React.SetStateAction<IProducts[] | []>>
-    listProductsCart: IProducts[] | []
+    listProductsCart: IProducts[] 
     setListProductsCart: React.Dispatch<React.SetStateAction<IProducts[] | []>>
+    counterSale: IProducts[] 
+    setCounterSale: React.Dispatch<React.SetStateAction<IProducts[] | []>>
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
+    amountProduct: (id: number) => void
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -20,10 +23,9 @@ export const UserContext = createContext<IProfileContext>({} as IProfileContext)
 
 const UserProvider = ({children}:IProfileContextProps) => {
 
-    const [listProducts, setListProducts] = useState<IProducts[] | []>([])
-    const [listProductsCart, setListProductsCart] = useState<IProducts[] | []>([])
+    const [listProducts, setListProducts] = useState<IProducts[]>([])
+    const [listProductsCart, setListProductsCart] = useState<IProducts[]>([])
     const [counterSale, setCounterSale] = useState<IProducts[]>([])
-    
 
     useEffect(() =>  {
         async function getListProducts () {
@@ -41,33 +43,31 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const deleteProductCart = (id: number) => {
         const filtredRemove = listProductsCart.filter(el => el.id !== id)
 
-        return setListProductsCart(filtredRemove)
+        return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove))
     }
 
     const addProductCart = (id: number) => {
-        console.log("chegou aqui")
-
-        const selectedProduct= listProducts.find((Element) => {
+        const selectedProduct = listProducts.find((Element) => {
             return Element.id === id;
         });
 
-        const validationCart= listProductsCart.find((Element) => {
+        const validationCart = listProductsCart.find((Element) => {
             return Element.id === id;
         });
 
-        console.log(selectedProduct)
-
-        console.log(validationCart)
-    
         if (!validationCart) {
-          return setListProductsCart([...listProductsCart, selectedProduct] as IProducts[])
+          return  (setCounterSale([...counterSale, selectedProduct] as IProducts[]), setListProductsCart([...listProductsCart, selectedProduct] as IProducts[]))
         }
     
-        // const selectedAgain = listProducts.find((element) => {
-        //   return element.id === productId;
-        // });
-    
         setCounterSale([...counterSale, selectedProduct] as IProducts[]);
+    };
+
+    const amountProduct = (id: number) => {
+        const amountFiltred = counterSale.filter((Element) => {
+          return Element.id === id;
+        });
+    
+        return amountFiltred.length;
     };
 
    return <UserContext.Provider 
@@ -77,7 +77,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         listProductsCart,
         setListProductsCart,
         deleteProductCart,
-        addProductCart
+        addProductCart,
+        amountProduct,
+        counterSale,
+        setCounterSale
     }}>{children}</UserContext.Provider>
 }
 
