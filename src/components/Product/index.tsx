@@ -3,7 +3,7 @@ import { UserContext } from "../../contexts/UserContext"
 
 const Product = ({infoProduct}: any) => {
 
-    const {listProductsCart, setListProductsCart} = useContext(UserContext)
+    const {listProductsCart, setListProductsCart, addProductCart} = useContext(UserContext)
 
     return <li>
         <img src={infoProduct.img} alt="" />
@@ -11,7 +11,7 @@ const Product = ({infoProduct}: any) => {
             <h2>{infoProduct.name}</h2>
             <span>{infoProduct.category}</span>
             <h4>{infoProduct.price}</h4>
-            <button onClick={() => setListProductsCart([...listProductsCart ,infoProduct])}>Adicionar</button>
+            <button onClick={() => addProductCart(infoProduct.id)}>Adicionar</button>
         </div>
     </li>
 }

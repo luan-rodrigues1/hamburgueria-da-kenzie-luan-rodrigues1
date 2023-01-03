@@ -12,6 +12,7 @@ export interface IProfileContext {
     listProductsCart: IProducts[] | []
     setListProductsCart: React.Dispatch<React.SetStateAction<IProducts[] | []>>
     deleteProductCart: (id: number) => void
+    addProductCart: (id: number) => void
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -21,6 +22,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
     const [listProducts, setListProducts] = useState<IProducts[] | []>([])
     const [listProductsCart, setListProductsCart] = useState<IProducts[] | []>([])
+    const [counterSale, setCounterSale] = useState<IProducts[]>([])
     
 
     useEffect(() =>  {
@@ -36,13 +38,37 @@ const UserProvider = ({children}:IProfileContextProps) => {
         getListProducts()
     }, [])
 
-    
-
     const deleteProductCart = (id: number) => {
         const filtredRemove = listProductsCart.filter(el => el.id !== id)
 
         return setListProductsCart(filtredRemove)
-    } 
+    }
+
+    const addProductCart = (id: number) => {
+        console.log("chegou aqui")
+
+        const selectedProduct= listProducts.find((Element) => {
+            return Element.id === id;
+        });
+
+        const validationCart= listProductsCart.find((Element) => {
+            return Element.id === id;
+        });
+
+        console.log(selectedProduct)
+
+        console.log(validationCart)
+    
+        if (!validationCart) {
+          return setListProductsCart([...listProductsCart, selectedProduct] as IProducts[])
+        }
+    
+        // const selectedAgain = listProducts.find((element) => {
+        //   return element.id === productId;
+        // });
+    
+        setCounterSale([...counterSale, selectedProduct] as IProducts[]);
+    };
 
    return <UserContext.Provider 
     value={{
@@ -50,7 +76,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setListProducts,
         listProductsCart,
         setListProductsCart,
-        deleteProductCart
+        deleteProductCart,
+        addProductCart
     }}>{children}</UserContext.Provider>
 }
 
