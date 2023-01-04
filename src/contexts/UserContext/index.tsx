@@ -13,9 +13,12 @@ export interface IProfileContext {
     setListProductsCart: React.Dispatch<React.SetStateAction<IProducts[] | []>>
     counterSale: IProducts[] 
     setCounterSale: React.Dispatch<React.SetStateAction<IProducts[] | []>>
+    productsFiltred: IProducts[] 
+    setProductsFiltred: React.Dispatch<React.SetStateAction<IProducts[] | []>>
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
+    searchProducts: (search: string) => void
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -26,6 +29,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [listProducts, setListProducts] = useState<IProducts[]>([])
     const [listProductsCart, setListProductsCart] = useState<IProducts[]>([])
     const [counterSale, setCounterSale] = useState<IProducts[]>([])
+    const [productsFiltred, setProductsFiltred] = useState<IProducts[]>([])
 
     useEffect(() =>  {
         async function getListProducts () {
@@ -82,6 +86,17 @@ const UserProvider = ({children}:IProfileContextProps) => {
         return amountFiltred.length;
     };
 
+    const searchProducts = (search: string) => {
+        const SearchFilter= listProducts.filter((element) => {
+            return element.name.toLowerCase().trim().includes(search.toLowerCase().trim()) ||
+                   element.category.toLowerCase().trim().includes(search.toLowerCase().trim())
+        });
+
+        return setProductsFiltred(SearchFilter)
+    }
+
+    console.log(productsFiltred)
+
    return <UserContext.Provider 
     value={{
         listProducts, 
@@ -92,7 +107,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         addProductCart,
         amountProduct,
         counterSale,
-        setCounterSale
+        setCounterSale,
+        productsFiltred,
+        setProductsFiltred,
+        searchProducts
     }}>{children}</UserContext.Provider>
 }
 

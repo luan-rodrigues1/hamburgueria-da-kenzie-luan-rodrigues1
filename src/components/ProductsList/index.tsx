@@ -5,7 +5,7 @@ import Product from "../Product"
 
 const ProductsList = () => {
 
-    const {listProducts} = useContext(UserContext)
+    const {listProducts, productsFiltred} = useContext(UserContext)
     
 
     return (
@@ -13,11 +13,21 @@ const ProductsList = () => {
             {listProducts[0] === undefined ? 
                 <h2>loading...</h2> 
                 : 
-                <ul>
-                {listProducts.map((el: IProducts)=>
-                 <Product infoProduct={el} key={el.id}/>)
+                <>
+                {productsFiltred[0] === undefined ?
+                    <ul>
+                        {listProducts.map((el: IProducts)=>
+                        <Product infoProduct={el} key={el.id}/>)
+                        }
+                    </ul>
+                :
+                    <ul>
+                        {productsFiltred.map((el: IProducts)=>
+                        <Product infoProduct={el} key={el.id}/>)
+                        }
+                    </ul>
                 }
-                </ul>
+                </>
             }
         </section>
     )
