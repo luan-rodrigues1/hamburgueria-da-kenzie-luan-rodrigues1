@@ -40,12 +40,6 @@ const UserProvider = ({children}:IProfileContextProps) => {
         getListProducts()
     }, [])
 
-    const deleteProductCart = (id: number) => {
-        const filtredRemove = listProductsCart.filter(el => el.id !== id)
-
-        return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove))
-    }
-
     const addProductCart = (id: number) => {
         const selectedProduct = listProducts.find((Element) => {
             return Element.id === id;
@@ -61,6 +55,24 @@ const UserProvider = ({children}:IProfileContextProps) => {
     
         setCounterSale([...counterSale, selectedProduct] as IProducts[]);
     };
+
+    const deleteProductCart = (id: number) => {
+        const quantityValidation = counterSale.filter(el => el.id === id)
+
+        const filtredRemove = listProductsCart.filter(el => el.id !== id)
+
+        if(quantityValidation.length === 1){
+            return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove)) 
+        }
+
+        const productDeleted = counterSale.find(el => el.id === id)
+
+        const indexRemove = counterSale.indexOf(productDeleted as IProducts)
+        
+        const filterRemove = counterSale.filter((el, index) => index !== indexRemove)
+
+        return setCounterSale(filterRemove)
+    }
 
     const amountProduct = (id: number) => {
         const amountFiltred = counterSale.filter((Element) => {
