@@ -5,7 +5,7 @@ import Product from "../Product"
 
 const ProductsList = () => {
 
-    const {listProducts, productsFiltred} = useContext(UserContext)
+    const {listProducts, productsFiltred, workingFilter} = useContext(UserContext)
     
 
     return (
@@ -14,18 +14,20 @@ const ProductsList = () => {
                 <h2>loading...</h2> 
                 : 
                 <>
-                {productsFiltred[0] === undefined ?
+                {!workingFilter ?
                     <ul>
-                        {listProducts.map((el: IProducts)=>
-                        <Product infoProduct={el} key={el.id}/>)
-                        }
+                        {listProducts.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
                     </ul>
                 :
-                    <ul>
-                        {productsFiltred.map((el: IProducts)=>
-                        <Product infoProduct={el} key={el.id}/>)
+                    <>
+                        {productsFiltred[0] !== undefined ?
+                            <ul>
+                                {productsFiltred.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
+                            </ul> 
+                            :
+                            <div><h1>Nenhum produto encontrado</h1></div>
                         }
-                    </ul>
+                    </>
                 }
                 </>
             }

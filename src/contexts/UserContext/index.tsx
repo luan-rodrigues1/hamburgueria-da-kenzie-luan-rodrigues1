@@ -15,6 +15,9 @@ export interface IProfileContext {
     setCounterSale: React.Dispatch<React.SetStateAction<IProducts[] | []>>
     productsFiltred: IProducts[] 
     setProductsFiltred: React.Dispatch<React.SetStateAction<IProducts[] | []>>
+    searchValue: string
+    setSearchValue: React.Dispatch<React.SetStateAction<string>>
+    workingFilter: boolean
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
@@ -30,6 +33,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [listProductsCart, setListProductsCart] = useState<IProducts[]>([])
     const [counterSale, setCounterSale] = useState<IProducts[]>([])
     const [productsFiltred, setProductsFiltred] = useState<IProducts[]>([])
+    const [searchValue, setSearchValue] = useState<string>("")
+    const [workingFilter, setWorkingFilter] = useState<boolean>(false)
 
     useEffect(() =>  {
         async function getListProducts () {
@@ -87,15 +92,20 @@ const UserProvider = ({children}:IProfileContextProps) => {
     };
 
     const searchProducts = (search: string) => {
-        const SearchFilter= listProducts.filter((element) => {
+
+        if(search.trim() === ""){
+            return setWorkingFilter(false)
+        }
+
+        const searchFilter= listProducts.filter((element) => {
             return element.name.toLowerCase().trim().includes(search.toLowerCase().trim()) ||
                    element.category.toLowerCase().trim().includes(search.toLowerCase().trim())
         });
 
-        return setProductsFiltred(SearchFilter)
-    }
+        setWorkingFilter(true)
 
-    console.log(productsFiltred)
+        return setProductsFiltred(searchFilter)
+    }
 
    return <UserContext.Provider 
     value={{
@@ -110,7 +120,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setCounterSale,
         productsFiltred,
         setProductsFiltred,
-        searchProducts
+        searchProducts,
+        searchValue,
+        setSearchValue,
+        workingFilter
     }}>{children}</UserContext.Provider>
 }
 
