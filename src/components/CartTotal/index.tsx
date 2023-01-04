@@ -3,7 +3,7 @@ import { UserContext } from "../../contexts/UserContext"
 
 const CartTotal = () => {
 
-    const {setListProductsCart, counterSale} = useContext(UserContext)
+    const {setListProductsCart, counterSale, setCounterSale} = useContext(UserContext)
 
     return <div>
         <div>
@@ -13,7 +13,7 @@ const CartTotal = () => {
                 }, 0)}
             </span>
         </div>
-        <button onClick={() => setListProductsCart([])}>Remover todos</button>
+        <button onClick={() => {return  (setListProductsCart([]), setCounterSale([]))}}>Remover todos</button>
     </div>
 }
 export default CartTotal
