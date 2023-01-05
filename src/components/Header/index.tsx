@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import logo from "../../assets/logoburguer.png"
+import "./style.css"
 
 
 const Header = () => {

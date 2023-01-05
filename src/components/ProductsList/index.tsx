@@ -13,7 +13,7 @@ const ProductsList = () => {
     return (
         <section>
             {listProducts[0] === undefined ? 
-                <div className="loading"></div>
+                <div className="loading"/>
                 : 
                 <>
                 {!workingFilter ?
