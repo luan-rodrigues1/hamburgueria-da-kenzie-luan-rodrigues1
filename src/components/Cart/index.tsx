@@ -8,18 +8,20 @@ const Cart = () => {
 
     const {listProductsCart} = useContext(UserContext)
 
-    return <aside>
-        {listProductsCart[0] === undefined ? 
-                <h2>Sua sacola está vazia</h2> 
-                : 
-                <ul>
-                {listProductsCart.map((el: IProducts, index)=>
-                 <CartProduct infoProduct={el} key={index}/>)
-                }
-                </ul>
-        }
-        <CartTotal/>
-    </aside>
+    return (
+        <aside>
+            {listProductsCart[0] === undefined ? 
+                    <h2>Sua sacola está vazia</h2> 
+                    : 
+                    <ul>
+                    {listProductsCart.map((el: IProducts, index)=>
+                    <CartProduct infoProduct={el} key={index}/>)
+                    }
+                    </ul>
+            }
+            <CartTotal/>
+        </aside>
+    )
 }
 
 export default Cart

@@ -1,9 +1,10 @@
-import './App.css';
+import './globalStyles.css';
+import "./typography.css"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import ProductsList from './components/ProductsList';
 import Cart from './components/Cart';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

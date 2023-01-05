@@ -1,7 +1,9 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import { IProducts } from "../../services/getProducts"
+import NoProducts from "../NoProducts"
 import Product from "../Product"
+import "./style.css"
 
 const ProductsList = () => {
 
@@ -11,7 +13,7 @@ const ProductsList = () => {
     return (
         <section>
             {listProducts[0] === undefined ? 
-                <h2>loading...</h2> 
+                <div className="loading"/>
                 : 
                 <>
                 {!workingFilter ?
@@ -25,7 +27,7 @@ const ProductsList = () => {
                                 {productsFiltred.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
                             </ul> 
                             :
-                            <div><h1>Nenhum produto encontrado</h1></div>
+                            <NoProducts/>
                         }
                     </>
                 }
