@@ -60,10 +60,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
             return Element.id === id;
         });
 
-        toast.success("Produto adicionado ao carrinho")
-
+        
         if (!validationCart) {
-          return  (setCounterSale([...counterSale, selectedProduct] as IProducts[]), setListProductsCart([...listProductsCart, selectedProduct] as IProducts[]))
+            toast.success("Produto adicionado ao carrinho")
+            return  (setCounterSale([...counterSale, selectedProduct] as IProducts[]), setListProductsCart([...listProductsCart, selectedProduct] as IProducts[]))
         }
     
         setCounterSale([...counterSale, selectedProduct] as IProducts[]);
@@ -74,9 +74,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
         const filtredRemove = listProductsCart.filter(el => el.id !== id)
 
-        toast.success("Produto removido do carrinho")
-
         if(quantityValidation.length === 1){
+            toast.success("Produto removido do carrinho")
             return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove)) 
         }
         const productDeleted = counterSale.find(el => el.id === id)

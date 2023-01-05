@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import { toast } from 'react-toastify';
 
 const CartTotal = () => {
 
@@ -14,7 +15,7 @@ const CartTotal = () => {
                     }, 0)}
                 </span>
             </div>
-            <button onClick={() => {return  (setListProductsCart([]), setCounterSale([]))}}>Remover todos</button>
+            <button onClick={() => {return  (toast.success("Todos os itens removidos"), setListProductsCart([]), setCounterSale([]))}}>Remover todos</button>
         </div>
     )
 }
