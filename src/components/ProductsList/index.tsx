@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import { IProducts } from "../../services/getProducts"
+import NoProducts from "../NoProducts"
 import Product from "../Product"
 
 const ProductsList = () => {
@@ -25,7 +26,7 @@ const ProductsList = () => {
                                 {productsFiltred.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
                             </ul> 
                             :
-                            <div><h1>Nenhum produto encontrado</h1></div>
+                            <NoProducts/>
                         }
                     </>
                 }

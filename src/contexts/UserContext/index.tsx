@@ -19,6 +19,7 @@ export interface IProfileContext {
     searchValue: string
     setSearchValue: React.Dispatch<React.SetStateAction<string>>
     workingFilter: boolean
+    setWorkingFilter: React.Dispatch<React.SetStateAction<boolean>>
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
@@ -127,7 +128,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         searchProducts,
         searchValue,
         setSearchValue,
-        workingFilter
+        workingFilter,
+        setWorkingFilter
     }}>{children}</UserContext.Provider>
 }
 

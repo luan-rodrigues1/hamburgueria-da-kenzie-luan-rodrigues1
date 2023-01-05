@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import logo from "../../assets/logoburguer.png"
 
 
 const Header = () => {
@@ -8,12 +9,11 @@ const Header = () => {
 
     return (
         <header>
-            <img src="" alt="Logo" />
+            <img src={logo} alt="Logo" />
             <form onSubmit={(event) => {return (event.preventDefault(), searchProducts(searchValue))}} >
                 <input value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="Digitar pesquisa"  type="text" />
-                <span onClick={() => setSearchValue("")} >X</span>
+                <span onClick={() => setSearchValue("")}>X</span>
                 <button>Buscar</button>
-                <img src="" alt="Lupa de pesquisar" />
             </form>
         </header>
     )
