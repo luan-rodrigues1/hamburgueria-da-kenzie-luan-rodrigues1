@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getProducts } from "../../services/getProducts";
 import { IProducts } from "../../services/getProducts";
+import { toast } from 'react-toastify';
 
 interface IProfileContextProps {
     children: React.ReactNode;
@@ -58,6 +59,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
             return Element.id === id;
         });
 
+        toast.success("Produto adicionado ao carrinho")
+
         if (!validationCart) {
           return  (setCounterSale([...counterSale, selectedProduct] as IProducts[]), setListProductsCart([...listProductsCart, selectedProduct] as IProducts[]))
         }
@@ -70,10 +73,11 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
         const filtredRemove = listProductsCart.filter(el => el.id !== id)
 
+        toast.success("Produto removido do carrinho")
+
         if(quantityValidation.length === 1){
             return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove)) 
         }
-
         const productDeleted = counterSale.find(el => el.id === id)
 
         const indexRemove = counterSale.indexOf(productDeleted as IProducts)
