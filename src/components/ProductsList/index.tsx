@@ -3,6 +3,7 @@ import { UserContext } from "../../contexts/UserContext"
 import { IProducts } from "../../services/getProducts"
 import NoProducts from "../NoProducts"
 import Product from "../Product"
+import "./style.css"
 
 const ProductsList = () => {
 
@@ -12,7 +13,7 @@ const ProductsList = () => {
     return (
         <section>
             {listProducts[0] === undefined ? 
-                <h2>loading...</h2> 
+                <div className="loading"></div>
                 : 
                 <>
                 {!workingFilter ?
