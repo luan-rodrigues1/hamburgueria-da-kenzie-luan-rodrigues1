@@ -1,42 +1,6 @@
-/* .App {
-  text-align: center;
-}
+import { createGlobalStyle } from "styled-components";
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
+export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -81,16 +45,38 @@ table {
 }
 
 :root {
-  --color-primary: #27ae60;
-  --Color-primary-50: #93d7af;
-  --Color-secondary: #eb5757;
-  --gray-100: #333333;
-  --grey-50: #828282;
-  --grey-20: #e0e0e0;
-  --grey-0: #f5f5f5;
-  --feedBack-negative: #e60000;
-  --feedBack-Warning: #ffcd07;
-  --feedBack-Sucess: #168821;
-  --feedBack-Information: #155bcb;
+  --colorPrimary: #27ae60;
+  --ColorPrimary50: #93d7af;
+  --ColorSecondary: #eb5757;
+  --gray100: #333333;
+  --gray50: #828282;
+  --gray20: #e0e0e0;
+  --gray0: #f5f5f5;
+  --feedBackNegative: #e60000;
+  --feedBackWarning: #ffcd07;
+  --feedBackSucess: #168821;
+  --feedBackInformation: #155bcb;
   --white: #ffffff;
 }
+
+.none {
+  display: none;
+}
+
+.loading {
+    animation: is-rotating 1s infinite;
+    width: 50px;
+    height: 50px;
+    border: 6px solid var(--gray0);
+    border-top-color: var(--colorPrimary);
+    border-radius: 50%;
+
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+`
