@@ -1,7 +1,3 @@
-import './globalStyles.css';
-import "./typography.css"
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import ProductsList from './components/ProductsList';
 import Cart from './components/Cart';
@@ -12,18 +8,6 @@ function App() {
       <Header/>
       <ProductsList/>
       <Cart/>
-      <ToastContainer
-      position="top-center"
-      autoClose={1200}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-      />
     </div>
   );
 }

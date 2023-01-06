@@ -1,17 +1,21 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import searchOff from "../../assets/Vectoroff.png"
+import { NoProductsStyle } from "./style"
 
 const NoProducts = () => {
 
     const {searchValue, setSearchValue, setWorkingFilter} = useContext(UserContext)
 
     return (
-        <div>
-            <img src={searchOff} alt="lupa desligada" />
-            <h2>Nenhum produto encontrado com a palavra "{searchValue}"</h2>
-            <button onClick={() => {return (setSearchValue(""), setWorkingFilter(false))}}>Limpe sua pesquisa e tente novamente</button>
-        </div>
+        <NoProductsStyle>
+            <div>
+                <img src={searchOff} alt="lupa desligada" />
+                <h2 className="Heading3">Nenhum resultado para:</h2>
+                <p className="Heading3">"{searchValue}"</p>
+                <button className="Body-600" onClick={() => {return (setSearchValue(""), setWorkingFilter(false))}}>Limpar pesquisa</button>
+            </div>
+        </NoProductsStyle>
     )
 }
 

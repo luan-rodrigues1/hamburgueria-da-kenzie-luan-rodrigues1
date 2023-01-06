@@ -1,19 +1,24 @@
 import { ReactNode, useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import { CartProductStyle } from "./style"
 
 const CartProduct = ({infoProduct}: any) => {
 
     const {deleteProductCart, amountProduct, addProductCart} = useContext(UserContext)
     
     return (
-        <li>
+        <CartProductStyle>
             <img src={infoProduct.img} alt="" />
-            <h2>{infoProduct.name}</h2>
-            <span>{infoProduct.category}</span>
-            <button onClick={() => deleteProductCart(infoProduct.id)}>-</button>
-            <h5>{amountProduct(infoProduct.id) as ReactNode}</h5>
-            <button onClick={() => addProductCart(infoProduct.id)}>+</button>
-        </li>
+            <div className="boxInfo">
+                <h4 className="Heading4">{infoProduct.name}</h4>
+                <span className="Caption">{infoProduct.category}</span>
+            </div>
+            <div className="boxButton">    
+                <button onClick={() => deleteProductCart(infoProduct.id)}>-</button>
+                <h5 className="Caption">{amountProduct(infoProduct.id) as ReactNode}</h5>
+                <button className="buttonAdd" onClick={() => addProductCart(infoProduct.id)}>+</button>
+            </div>
+        </CartProductStyle>
     )
 }
 

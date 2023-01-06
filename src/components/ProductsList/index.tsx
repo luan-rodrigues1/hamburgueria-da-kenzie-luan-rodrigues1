@@ -3,7 +3,7 @@ import { UserContext } from "../../contexts/UserContext"
 import { IProducts } from "../../services/getProducts"
 import NoProducts from "../NoProducts"
 import Product from "../Product"
-import "./style.css"
+import { ProductsListStyle } from "./style"
 
 const ProductsList = () => {
 
@@ -11,29 +11,31 @@ const ProductsList = () => {
     
 
     return (
-        <section>
-            {listProducts[0] === undefined ? 
-                <div className="loading"/>
-                : 
-                <>
-                {!workingFilter ?
-                    <ul>
-                        {listProducts.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
-                    </ul>
-                :
+        <ProductsListStyle>
+            <section>
+                {listProducts[0] === undefined ? 
+                    <div className="loading"/>
+                    : 
                     <>
-                        {productsFiltred[0] !== undefined ?
-                            <ul>
-                                {productsFiltred.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
-                            </ul> 
-                            :
-                            <NoProducts/>
-                        }
+                    {!workingFilter ?
+                        <ul>
+                            {listProducts.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
+                        </ul>
+                    :
+                        <>
+                            {productsFiltred[0] !== undefined ?
+                                <ul>
+                                    {productsFiltred.map((el: IProducts)=> <Product infoProduct={el} key={el.id}/>)}
+                                </ul> 
+                                :
+                                <NoProducts/>
+                            }
+                        </>
+                    }
                     </>
                 }
-                </>
-            }
-        </section>
+            </section>
+        </ProductsListStyle>
     )
 }
 
