@@ -79,6 +79,7 @@ table {
     }
 }
 
+
 @media (min-width: 1024px) {
     .App > main {
         width: 75%;
@@ -86,6 +87,16 @@ table {
         display: flex;
         justify-content: space-between;
         position: relative;
+    }
+
+    ul::-webkit-scrollbar {
+        width: 3px; 
+    }
+
+    ul::-webkit-scrollbar-thumb {
+        background-color: var(--colorPrimary);
+        border-radius: 20px;       
+        border: 3px solid none;  
     }
 }
 
