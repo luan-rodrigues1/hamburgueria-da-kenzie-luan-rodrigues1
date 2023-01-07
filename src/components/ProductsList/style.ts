@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ProductsListStyle = styled.div`
     section {
-        /* height: 400px; */
         margin: 15px 0 20px 0;
         display: flex;
         justify-content: center;
@@ -10,10 +9,25 @@ export const ProductsListStyle = styled.div`
     }
 
     ul {
-        /* height: 400px; */
-        /* height: 100%; */
         display: flex;
         overflow-x: auto;
+    }
+
+    @media (min-width: 1024px) {
+        section {
+            width: auto;
+        }
+
+        section > ul {
+            flex-wrap: wrap;
+            overflow-x: none;
+        }
+
+        section > div {
+            position: fixed;
+            top: 14%;
+            left: 35%;
+        }
     }
 
 `

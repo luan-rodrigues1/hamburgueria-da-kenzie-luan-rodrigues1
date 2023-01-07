@@ -66,4 +66,11 @@ export const ProductStyle = styled.div`
       border: 2px solid var(--colorPrimary);
    }
 
+   @media (min-width: 1024px) {
+        li {
+            margin-bottom: 15px;
+            width: 290px;
+        }
+    }
+
 `

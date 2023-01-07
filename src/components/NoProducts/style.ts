@@ -29,4 +29,14 @@ export const NoProductsStyle = styled.div`
       color: var(--colorPrimary);
       border: 2px solid var(--colorPrimary);
    }
+
+   @media (min-width: 1024px) {
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    }
 `

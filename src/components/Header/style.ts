@@ -5,10 +5,15 @@ export const HeaderStyle = styled.div`
    header {
       width: 100%;
       height: 115px;
+      background-color: var(--gray0);
+   }
+
+   nav {
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: var(--gray0);
    }
 
    img {
@@ -79,5 +84,27 @@ export const HeaderStyle = styled.div`
       background-color: var(--white);
       color: var(--colorPrimary);
       border: 2px solid var(--colorPrimary);
+   }
+
+   @media (min-width: 1024px) {
+
+      header {
+         width: 100%;
+         height: 90px;
+      }
+
+      nav {
+         width: 75%;
+         margin: 0 auto;
+         flex-direction: row;
+         align-items: center;
+         justify-content: space-between;
+      }
+
+      form {
+         width: 300px;
+         height: 45px;
+         margin-top: 10px;
+      } 
    }
 `;
