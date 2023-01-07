@@ -10,6 +10,7 @@ export const CartProductStyle = styled.li`
     }
 
     .boxInfo {
+        width: 111px;
         background-color: var(--gray0);
         display: flex;
         flex-direction: column;
@@ -50,6 +51,7 @@ export const CartProductStyle = styled.li`
     }
 
     .boxButton {
+        width: 55px;
         display: flex;
         flex-direction: row;
         justify-content: end;

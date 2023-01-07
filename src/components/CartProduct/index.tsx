@@ -4,13 +4,13 @@ import { CartProductStyle } from "./style"
 
 const CartProduct = ({infoProduct}: any) => {
 
-    const {deleteProductCart, amountProduct, addProductCart} = useContext(UserContext)
+    const {deleteProductCart, amountProduct, addProductCart, formatCharacters} = useContext(UserContext)
     
     return (
         <CartProductStyle>
             <img src={infoProduct.img} alt="" />
             <div className="boxInfo">
-                <h4 className="Heading4">{infoProduct.name}</h4>
+                <h4 className="Heading4">{formatCharacters(infoProduct.name) as ReactNode}</h4>
                 <span className="Caption">{infoProduct.category}</span>
             </div>
             <div className="boxButton">    

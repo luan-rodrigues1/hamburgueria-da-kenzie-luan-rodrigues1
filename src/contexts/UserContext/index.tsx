@@ -20,10 +20,12 @@ export interface IProfileContext {
     setSearchValue: React.Dispatch<React.SetStateAction<string>>
     workingFilter: boolean
     setWorkingFilter: React.Dispatch<React.SetStateAction<boolean>>
+    allsearch: string[]
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
     searchProducts: (search: string) => void
+    formatCharacters: (nameProduct: string) => void
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -37,6 +39,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [productsFiltred, setProductsFiltred] = useState<IProducts[]>([])
     const [searchValue, setSearchValue] = useState<string>("")
     const [workingFilter, setWorkingFilter] = useState<boolean>(false)
+    const [allsearch, setAllsearch] = useState<string[]>([])
 
     useEffect(() =>  {
         async function getListProducts () {
@@ -62,10 +65,11 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
         
         if (!validationCart) {
-            toast.success("Produto adicionado ao carrinho")
+            toast.success("Item adicionado ao carrinho")
             return  (setCounterSale([...counterSale, selectedProduct] as IProducts[]), setListProductsCart([...listProductsCart, selectedProduct] as IProducts[]))
         }
-    
+
+        toast.info("Item alterado no carrinho")
         setCounterSale([...counterSale, selectedProduct] as IProducts[]);
     };
 
@@ -75,7 +79,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
         const filtredRemove = listProductsCart.filter(el => el.id !== id)
 
         if(quantityValidation.length === 1){
-            toast.success("Produto removido do carrinho")
+            toast.success("Item removido do carrinho")
             return (setListProductsCart(filtredRemove), setCounterSale(filtredRemove)) 
         }
         const productDeleted = counterSale.find(el => el.id === id)
@@ -83,6 +87,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         const indexRemove = counterSale.indexOf(productDeleted as IProducts)
         
         const filterRemove = counterSale.filter((el, index) => index !== indexRemove)
+
+        toast.info("Item alterado no carrinho")
 
         return setCounterSale(filterRemove)
     }
@@ -96,6 +102,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     };
 
     const searchProducts = (search: string) => {
+        setAllsearch([search, ...allsearch])
 
         if(search.trim() === ""){
             return setWorkingFilter(false)
@@ -109,6 +116,18 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setWorkingFilter(true)
 
         return setProductsFiltred(searchFilter)
+    }
+
+    const formatCharacters = (nameProduct: string) => {
+        if(nameProduct.length < 12){
+            return nameProduct
+        }
+
+        const swapArray = nameProduct.split("")
+
+        const characterFilter = swapArray.filter((el, index) => index < 12)
+
+        return [...characterFilter, "..."]
     }
 
    return <UserContext.Provider 
@@ -128,7 +147,9 @@ const UserProvider = ({children}:IProfileContextProps) => {
         searchValue,
         setSearchValue,
         workingFilter,
-        setWorkingFilter
+        setWorkingFilter,
+        formatCharacters,
+        allsearch
     }}>{children}</UserContext.Provider>
 }
 

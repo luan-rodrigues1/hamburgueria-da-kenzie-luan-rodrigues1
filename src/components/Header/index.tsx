@@ -6,13 +6,13 @@ import { HeaderStyle } from "./style"
 
 const Header = () => {
 
-    const {searchProducts, searchValue, setSearchValue} = useContext(UserContext)
+    const {searchProducts, searchValue, setSearchValue, setWorkingFilter} = useContext(UserContext)
 
     return (
         <HeaderStyle>
             <header className="containerAllHeader">
                 <nav>
-                    <img src={logo} alt="Logo" />
+                    <img onClick={() => {return (setSearchValue(""), setWorkingFilter(false))}} src={logo} alt="Logo" />
                     <form onSubmit={(event) => {return (event.preventDefault(), searchProducts(searchValue))}} >
                         <input value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="Digitar pesquisa"  type="text" />
                         <span className={searchValue !== "" ? "Headline" : "Headline none"} onClick={() => setSearchValue("")}>X</span>

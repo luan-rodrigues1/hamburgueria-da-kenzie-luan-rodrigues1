@@ -18,6 +18,7 @@ export const HeaderStyle = styled.div`
 
    img {
       margin: 15px 0 10px 0;
+      cursor: pointer;
    }
 
    form {
@@ -65,7 +66,7 @@ export const HeaderStyle = styled.div`
       width: 85px;
       height: 33px;
       border: solid var(--colorPrimary);
-      border-radius: 10px;
+      border-radius: 8px;
       background-color: var(--colorPrimary);
       color: var(--white);
    }
