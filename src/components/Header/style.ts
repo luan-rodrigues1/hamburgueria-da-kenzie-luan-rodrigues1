@@ -18,6 +18,7 @@ export const HeaderStyle = styled.div`
 
    img {
       margin: 15px 0 10px 0;
+      cursor: pointer;
    }
 
    form {
