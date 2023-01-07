@@ -24,6 +24,7 @@ export interface IProfileContext {
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
     searchProducts: (search: string) => void
+    formatCharacters: (nameProduct: string) => void
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -114,6 +115,18 @@ const UserProvider = ({children}:IProfileContextProps) => {
         return setProductsFiltred(searchFilter)
     }
 
+    const formatCharacters = (nameProduct: string) => {
+        if(nameProduct.length < 12){
+            return nameProduct
+        }
+
+        const swapArray = nameProduct.split("")
+
+        const characterFilter = swapArray.filter((el, index) => index < 12)
+
+        return [...characterFilter, "..."]
+    }
+
    return <UserContext.Provider 
     value={{
         listProducts, 
@@ -131,7 +144,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         searchValue,
         setSearchValue,
         workingFilter,
-        setWorkingFilter
+        setWorkingFilter,
+        formatCharacters
     }}>{children}</UserContext.Provider>
 }
 
