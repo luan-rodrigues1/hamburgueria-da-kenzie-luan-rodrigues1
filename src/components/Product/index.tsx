@@ -9,7 +9,7 @@ const Product = ({infoProduct}: any) => {
     return (
         <ProductStyle>
             <li>
-                <img src={infoProduct.img} alt="" />
+                <img src={infoProduct.img} alt={`Imagem do produto ${infoProduct.name}`} />
                 <div>
                     <h2 className="Heading3">{infoProduct.name}</h2>
                     <span className="Caption">{infoProduct.category}</span>
