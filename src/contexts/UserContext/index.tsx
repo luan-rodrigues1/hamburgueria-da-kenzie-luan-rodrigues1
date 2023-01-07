@@ -20,6 +20,7 @@ export interface IProfileContext {
     setSearchValue: React.Dispatch<React.SetStateAction<string>>
     workingFilter: boolean
     setWorkingFilter: React.Dispatch<React.SetStateAction<boolean>>
+    allsearch: string[]
     deleteProductCart: (id: number) => void
     addProductCart: (id: number) => void
     amountProduct: (id: number) => void
@@ -38,6 +39,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [productsFiltred, setProductsFiltred] = useState<IProducts[]>([])
     const [searchValue, setSearchValue] = useState<string>("")
     const [workingFilter, setWorkingFilter] = useState<boolean>(false)
+    const [allsearch, setAllsearch] = useState<string[]>([])
 
     useEffect(() =>  {
         async function getListProducts () {
@@ -100,6 +102,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     };
 
     const searchProducts = (search: string) => {
+        setAllsearch([search, ...allsearch])
 
         if(search.trim() === ""){
             return setWorkingFilter(false)
@@ -145,7 +148,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setSearchValue,
         workingFilter,
         setWorkingFilter,
-        formatCharacters
+        formatCharacters,
+        allsearch
     }}>{children}</UserContext.Provider>
 }
 
