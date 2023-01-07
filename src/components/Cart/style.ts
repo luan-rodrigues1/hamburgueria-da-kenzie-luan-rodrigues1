@@ -57,4 +57,12 @@ export const CartStyle = styled.div`
         background-color: var(--gray0);
     }
 
+    @media (min-width: 1024px) {
+        aside {
+            width: 420px;
+            min-width: 320px;
+            margin-top: 15px;
+        }
+    }
+
 `

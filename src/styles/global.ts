@@ -79,4 +79,14 @@ table {
     }
 }
 
+@media (min-width: 1024px) {
+    .App > main {
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+}
+
 `
