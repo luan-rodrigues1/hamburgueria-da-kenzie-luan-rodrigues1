@@ -18,6 +18,7 @@ Um e-commerce feito em React JS, permite adicionar produtos ao carrinho caso o p
 - React 
 - TypeScript
 - Axios
+- Styled Components
 - React-Toastify
 
 
