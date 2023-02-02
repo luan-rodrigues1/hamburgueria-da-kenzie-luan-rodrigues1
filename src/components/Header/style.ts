@@ -40,7 +40,7 @@ export const HeaderStyle = styled.div`
 
    input {
       width: 60%;
-      height: 96%;
+      height: 94%;
       padding-left: 5px;
       border-radius: 8px;
       border: none;
