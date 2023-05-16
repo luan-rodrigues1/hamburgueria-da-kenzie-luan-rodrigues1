@@ -2,9 +2,7 @@
 ###
 # Sobre o projeto
 
-Link: https://hamburgueria-da-kenzie-luan-rodrigues1.vercel.app/
-
-Um e-commerce feito em React JS, permite adicionar produtos ao carrinho caso o produto adicionado já estiver adicionado é incluído somente o valor no carrinho e a informação com a quantidade, também é possível remover os produtos e filtrar pelo nome ou categoria na barra de pesquisa
+Um e-commerce feito em React e TypeScript, permite adicionar produtos ao carrinho caso o produto adicionado já estiver adicionado é incluído somente o valor no carrinho e a informação com a quantidade, também é possível remover os produtos e filtrar pelo nome ou categoria na barra de pesquisa
 
 ## Layout 
 ![home4 (1)](https://user-images.githubusercontent.com/106760673/216408095-d7710820-585f-4a2b-8158-40ed90fcd24d.png) ![home4 (2)](https://user-images.githubusercontent.com/106760673/216410772-35c22880-8dd4-455e-865f-3afa99729b1e.png)
